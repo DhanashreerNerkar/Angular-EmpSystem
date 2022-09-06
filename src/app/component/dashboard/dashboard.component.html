@@ -1,0 +1,275 @@
+<div class="container-fluid">
+
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Employee Management System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" 
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <button class="btn btn-outline-success  me-2" data-bs-toggle="modal" data-bs-target="#CompanyModal">Add Company</button>  
+                <button class="btn btn-outline-success  me-2" data-bs-toggle="modal" data-bs-target="#DepartmentModal">Add Department</button>  
+                <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#CompanyModal">Add Employee</button>  
+            </div>
+        </div>
+  </nav>
+
+  
+  <!-- Add Company Modal -->
+  <div class="modal fade" id="CompanyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Company</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="companyDetail">
+                <div class="mb-3">
+                    <label for="Name" class="form-label">Name</label>
+                    <input type="text" class="form-control" formControlName="Name"  id="Name" aria-describedby="Name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="EstalishmentYear" class="form-label">Estalishment Year</label>
+                    <input type="text" class="form-control" formControlName="EstalishmentYear"  id="EstalishmentYear" aria-describedby="EstalishmentYear">
+                  </div>
+                  <div class="mb-3">
+                    <label for="ContactNumber" class="form-label">Contact Number</label>
+                    <input type="text" class="form-control" formControlName="ContactNumber"  id="ContactNumber" aria-describedby="ContactNumber">
+                  </div>
+                <div class="mb-3">
+                    <label for="CompanyEmail" class="form-label">Company Email</label>
+                    <input type="text" class="form-control" formControlName="CompanyEmail"  id="CompanyEmail" aria-describedby="CompanyEmail">
+                  </div>
+                  <div class="mb-3">
+                    <label for="Website" class="form-label">Website</label>
+                    <input type="text" class="form-control" formControlName="Website"  id="Website" aria-describedby="Website">
+                  </div>
+                  <div class="mb-3">
+                    <label for="AddressLine1" class="form-label">Address Line 1</label>
+                    <input type="text" class="form-control" formControlName="AddressLine1"  id="AddressLine1" aria-describedby="AddressLine1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="AddressLine2" class="form-label">Address Line 2</label>
+                    <input type="text" class="form-control" formControlName="AddressLine2"  id="AddressLine2" aria-describedby="AddressLine2">
+                  </div>
+                  <div class="mb-3">
+                    <label for="Country" class="form-label">Country</label>
+                    <input type="text" class="form-control" formControlName="Country"  id="Country" aria-describedby="Country">
+                  </div>
+                  <div class="mb-3">
+                    <label for="State" class="form-label">State</label>
+                    <input type="text" class="form-control" formControlName="State"  id="State" aria-describedby="State">
+                  </div>
+                  <div class="mb-3">
+                    <label for="City" class="form-label">City</label>
+                    <input type="text" class="form-control" formControlName="City"  id="City" aria-describedby="City">
+                  </div>
+                  <div class="mb-3">
+                    <label for="ZipCode" class="form-label">ZipCode</label>
+                    <input type="text" class="form-control" formControlName="ZipCode"  id="ZipCode" aria-describedby="ZipCode">
+                  </div>
+                
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addCompany()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Company list table-->
+  <br/><br/>
+  <table class="table table-hover">
+    <thead>
+      <tr style="background-color:rgb(236, 238, 238);">
+        <th scope="col">#Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Estalishment Year</th>
+        <th scope="col">Contact Number</th>
+        <th scope="col">Company Email</th>
+        <th scope="col">Website</th>
+        <th scope="col">Address Line1</th>
+        <th scope="col">Address Line2</th>
+        <th scope="col">Country</th>
+        <th scope="col">State</th>
+        <th scope="col">City</th>
+        <th scope="col">ZipCode</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let company of companyList">
+        <td scope="row">{{company.id}}</td>
+        <td>{{company.name}}</td>
+        <td>{{company.establishedYear}}</td>
+        <td>{{company.contactNumber}}</td>
+        <td>{{company.companyEmail}}</td>
+        <td>{{company.website}}</td>
+        <td>{{company.addressLine1}}</td>
+        <td>{{company.addressLine2}}</td>
+        <td>{{company.country}}</td>
+        <td>{{company.state}}</td>
+        <td>{{company.city}}</td>
+        <td>{{company.zipCode}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#EditCompanyModal" (click)="editCompany(company)">Edit</button> 
+          <button type="button" class="btn btn-outline-danger" (click)="deleteCompany(company)">Delete</button>
+        </td>
+      </tr>   
+    </tbody>
+  </table>
+
+  <!-- Edit Company Modal -->
+  <div class="modal fade" id="EditCompanyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Company</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="companyDetail">
+              <div class="mb-3">
+                  <label for="Name" class="form-label">Name</label>
+                  <input type="text" class="form-control" formControlName="Name"  id="Name" aria-describedby="Name">
+                </div>
+                <div class="mb-3">
+                  <label for="EstalishmentYear" class="form-label">Estalishment Year</label>
+                  <input type="text" class="form-control" formControlName="EstalishmentYear"  id="EstalishmentYear" aria-describedby="EstalishmentYear">
+                </div>
+                <div class="mb-3">
+                  <label for="ContactNumber" class="form-label">Contact Number</label>
+                  <input type="text" class="form-control" formControlName="ContactNumber"  id="ContactNumber" aria-describedby="ContactNumber">
+                </div>
+              <div class="mb-3">
+                  <label for="CompanyEmail" class="form-label">Company Email</label>
+                  <input type="text" class="form-control" formControlName="CompanyEmail"  id="CompanyEmail" aria-describedby="CompanyEmail">
+                </div>
+                <div class="mb-3">
+                  <label for="Website" class="form-label">Website</label>
+                  <input type="text" class="form-control" formControlName="Website"  id="Website" aria-describedby="Website">
+                </div>
+                <div class="mb-3">
+                  <label for="AddressLine1" class="form-label">Address Line 1</label>
+                  <input type="text" class="form-control" formControlName="AddressLine1"  id="AddressLine1" aria-describedby="AddressLine1">
+                </div>
+                <div class="mb-3">
+                  <label for="AddressLine2" class="form-label">Address Line 2</label>
+                  <input type="text" class="form-control" formControlName="AddressLine2"  id="AddressLine2" aria-describedby="AddressLine2">
+                </div>
+                <div class="mb-3">
+                  <label for="Country" class="form-label">Country</label>
+                  <input type="text" class="form-control" formControlName="Country"  id="Country" aria-describedby="Country">
+                </div>
+                <div class="mb-3">
+                  <label for="State" class="form-label">State</label>
+                  <input type="text" class="form-control" formControlName="State"  id="State" aria-describedby="State">
+                </div>
+                <div class="mb-3">
+                  <label for="City" class="form-label">City</label>
+                  <input type="text" class="form-control" formControlName="City"  id="City" aria-describedby="City">
+                </div>
+                <div class="mb-3">
+                  <label for="ZipCode" class="form-label">ZipCode</label>
+                  <input type="text" class="form-control" formControlName="ZipCode"  id="ZipCode" aria-describedby="ZipCode">
+                </div> 
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" (click)="updateCompany()">Update</button>
+                </div>
+            </form>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!--Department list table-->
+  <br/><br/>
+  <table class="table table-hover">
+    <thead style="background-color:rgb(236, 238, 238);">
+      <tr>
+        <th scope="col">#Id</th>
+        <th scope="col">Company</th>
+        <th scope="col">Department</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let department of departmentList">
+        <td scope="row">{{department.id}}</td>
+        <td>{{department.companyName}}</td>
+        <td>{{department.departmentName}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#EditDepartmentModal" (click)="editDepartment(department)">Edit</button> 
+          <button type="button" class="btn btn-outline-danger" (click)="deleteDepartment(department)">Delete</button>
+        </td>
+      </tr>   
+    </tbody>
+  </table>
+</div>
+
+ <!-- Add Department Modal -->
+ <div class="modal fade" id="DepartmentModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Add New Department</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="departmentDetail">
+              <div class="mb-3" >
+                  <label for="CompanyName" class="form-label" >Select Company</label>
+                <!-- <input type="text" class="form-control" formControlName="CompanyName"  id="CompanyName" aria-describedby="CompanyName">-->
+                <select id="CompanyName" name="CompanyName" class="form-control" formControlName="CompanyName" aria-describedby="CompanyName">               
+                    <option *ngFor="let c of companyList" [value]="c.name">{{c.name}}</option>   
+                 </select>
+                </div>   
+                <div class="mb-3">
+                  <label for="DepartmentName" class="form-label">Department Name</label>
+                  <input type="text" class="form-control" formControlName="DepartmentName"  id="DepartmentName" aria-describedby="DepartmentName">
+                </div>             
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addDepartment()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Edit Department Modal -->
+  <div class="modal fade" id="EditDepartmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Department</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="departmentDetail">
+                <div class="mb-3">
+                  <label for="CompanyName" class="form-label" >Select Company</label>
+                  <select id="CompanyName" name="CompanyName" class="form-control" formControlName="CompanyName" aria-describedby="CompanyName">               
+                      <option *ngFor="let c of companyList" [value]="c.name">{{c.name}}</option>   
+                   </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="DepartmentName" class="form-label">Department Name</label>
+                    <input type="text" class="form-control" formControlName="DepartmentName"  id="DepartmentName" aria-describedby="DepartmentName">
+                  </div>
+                 
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="updateDepartment()">Update</button>
+                  </div>
+              </form>
+        </div>
+      </div>
+    </div>
+    </div>
